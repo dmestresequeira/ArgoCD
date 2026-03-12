@@ -7,7 +7,7 @@ spec:
   project: default
 
   sources:
-    # Source 1: Helm chart from Traefik
+    # Source 1: Traefik Helm chart
     - repoURL: https://helm.traefik.io/traefik
       chart: traefik
       targetRevision: 28.0.0

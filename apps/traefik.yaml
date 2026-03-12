@@ -1,47 +1,33 @@
-deployment:
-  enabled: true
-  replicas: 2
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: traefik
+  namespace: argocd
+spec:
+  project: default
 
-service:
-  enabled: true
-  type: NodePort
-  spec:
-    externalTrafficPolicy: Cluster
-  ports:
-    web:
-      port: 80
-      nodePort: 30080
-    websecure:
-      port: 443
-      nodePort: 30443
+  sources:
+    # Source 1: Helm chart from Traefik
+    - repoURL: https://helm.traefik.io/traefik
+      chart: traefik
+      targetRevision: 28.0.0
+      helm:
+        releaseName: traefik
+        valueFiles:
+          - $values/ingress/traefik/values.yaml
 
-providers:
-  kubernetesCRD:
-    enabled: true
-  kubernetesIngress:
-    enabled: true
+    # Source 2: Your Git repo containing values.yaml
+    - repoURL: git@github.com:dmestresequeira/ArgoCD.git
+      targetRevision: main
+      ref: values
 
-metrics:
-  prometheus:
-    enabled: true
-    entryPoint: metrics
-    addEntryPointsLabels: true
-    addServicesLabels: true
+  destination:
+    server: https://kubernetes.default.svc
+    namespace: traefik-system
 
-ports:
-  web:
-    port: 80
-    expose: true
-    exposedPort: 80
-    protocol: TCP
-  websecure:
-    port: 443
-    expose: true
-    exposedPort: 443
-    protocol: TCP
-
-logs:
-  general:
-    level: INFO
-  access:
-    enabled: true
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
+    syncOptions:
+      - CreateNamespace=false

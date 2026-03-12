@@ -17,7 +17,7 @@ spec:
           - $values/ingress/traefik/values.yaml
 
     # Source 2: Your Git repo containing values.yaml
-    - repoURL: git@github.com:dmestresequeira/ArgoCD.git
+    - repoURL: https://github.com/dmestresequeira/ArgoCD.git
       targetRevision: main
       ref: values
 

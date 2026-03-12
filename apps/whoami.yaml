@@ -9,7 +9,7 @@ spec:
   source:
     repoURL: https://github.com/dmestresequeira/ArgoCD.git
     targetRevision: main
-    path: apps-test/whoami
+    path: app-test/whoami
 
   destination:
     server: https://kubernetes.default.svc

@@ -7,19 +7,19 @@ spec:
   project: default
 
   sources:
-    # Primary source: your Git repo
-    - repoURL: https://github.com/dmestresequeira/ArgoCD.git
-      targetRevision: main
-      path: ingress/traefik
-      helm:
-        releaseName: traefik-traefik-system
-        valueFiles:
-          - values.yaml
-
-    # Secondary source: the Traefik Helm chart
+    # Source 1: Traefik Helm chart
     - repoURL: https://helm.traefik.io/traefik
       chart: traefik
       targetRevision: 28.0.0
+      helm:
+        releaseName: traefik-traefik-system
+        valueFiles:
+          - $values/ingress/traefik/values.yaml
+
+    # Source 2: Your Git repo containing values.yaml
+    - repoURL: https://github.com/dmestresequeira/ArgoCD.git
+      targetRevision: main
+      ref: values
 
   destination:
     server: https://kubernetes.default.svc

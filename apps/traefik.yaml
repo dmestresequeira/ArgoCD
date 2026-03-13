@@ -7,7 +7,11 @@ spec:
   project: default
 
   sources:
-    # Source 1: Traefik Helm chart
+    # Source 1: Your Git repo containing values.yaml
+    - repoURL: https://github.com/dmestresequeira/ArgoCD.git
+      targetRevision: main
+      ref: values
+    # Source 2: Traefik Helm chart
     - repoURL: https://helm.traefik.io/traefik
       chart: traefik
       targetRevision: 28.0.0
@@ -15,11 +19,6 @@ spec:
         releaseName: traefik
         valueFiles:
           - $values/ingress/traefik/values.yaml
-
-    # Source 2: Your Git repo containing values.yaml
-    - repoURL: https://github.com/dmestresequeira/ArgoCD.git
-      targetRevision: main
-      ref: values
 
   destination:
     server: https://kubernetes.default.svc

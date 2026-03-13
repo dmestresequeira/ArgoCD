@@ -20,6 +20,7 @@ providers:
     enabled: true
   kubernetesIngress:
     enabled: true
+    ingressClass: traefik
 
 metrics:
   prometheus:

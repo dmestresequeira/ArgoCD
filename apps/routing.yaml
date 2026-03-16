@@ -11,9 +11,6 @@ spec:
   destination:
     server: https://kubernetes.default.svc
     namespace: traefik
-  syncPolicy:
-    automated:
-      prune: true
-      selfHeal: true
+  syncPolicy: {}
   syncWave: 1
 

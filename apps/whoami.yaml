@@ -5,17 +5,14 @@ metadata:
   namespace: argocd
 spec:
   project: default
-
   source:
-    repoURL: https://github.com/dmestresequeira/ArgoCD.git
-    targetRevision: main
-    path: app-test/whoami
-
+    repoURL: https://github.com/dmestresequeira/ArgoCD
+    path: ArgoCD/apps/whoami
   destination:
     server: https://kubernetes.default.svc
-    namespace: app-test
-
+    namespace: whoami
   syncPolicy:
     automated:
-      prune: false
-      selfHeal: false
+      prune: true
+      selfHeal: true
+  syncWave: 2

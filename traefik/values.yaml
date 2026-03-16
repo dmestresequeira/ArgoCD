@@ -11,4 +11,3 @@ ports:
     nodePort: 32080
   websecure:
     nodePort: 32443
-

@@ -7,7 +7,7 @@ spec:
   project: default
   source:
     repoURL: https://github.com/dmestresequeira/ArgoCD
-    path: ArgoCD/routing
+    path: routing
   destination:
     server: https://kubernetes.default.svc
     namespace: traefik

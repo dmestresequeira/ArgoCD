@@ -7,9 +7,10 @@ spec:
   project: default
   source:
     repoURL: https://github.com/dmestresequeira/ArgoCD
-    path: app-test/whoami
+    path: apps/whoami
   destination:
     server: https://kubernetes.default.svc
     namespace: whoami
-  syncPolicy: {}
+  syncPolicy:
+    automated: {}
   syncWave: 2

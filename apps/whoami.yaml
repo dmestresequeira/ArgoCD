@@ -7,7 +7,7 @@ spec:
   project: default
   source:
     repoURL: https://github.com/dmestresequeira/ArgoCD
-    path: ArgoCD/apps/whoami
+    path: apps/whoami
   destination:
     server: https://kubernetes.default.svc
     namespace: whoami

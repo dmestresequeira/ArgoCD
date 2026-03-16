@@ -1,1 +1,14 @@
+experimental:
+  kubernetesGateway:
+    enabled: true
+    gatewayClassName: traefik
+
+service:
+  type: NodePort
+
+ports:
+  web:
+    nodePort: 32080
+  websecure:
+    nodePort: 32443
 
